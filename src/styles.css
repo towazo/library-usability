@@ -237,6 +237,18 @@ input[type="search"] {
   font-weight: 700;
 }
 
+.selected-count {
+  padding: 8px 12px;
+  background: #f5f5f3;
+  border-left: 3px solid var(--rule);
+  font-size: 15px;
+}
+
+.selected-count strong {
+  font-size: 17px;
+  margin: 0 2px;
+}
+
 .field {
   display: grid;
   gap: 4px;
@@ -313,13 +325,22 @@ input[type="search"] {
 }
 
 .done dt {
-  width: 4em;
+  width: 6em;
   flex: none;
+  white-space: nowrap;
   color: var(--ink-2);
 }
 
 .done dd {
   font-weight: 700;
+}
+
+.done dl div + div {
+  margin-top: 6px;
+}
+
+.done__books li + li {
+  margin-top: 2px;
 }
 
 .done__note {

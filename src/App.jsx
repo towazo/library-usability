@@ -17,8 +17,8 @@ export default function App() {
   // 検索
   const [keywordInput, setKeywordInput] = useState("");
   const [keyword, setKeyword] = useState("");
-  // 選択中の本（1冊）
-  const [selectedId, setSelectedId] = useState(null);
+  // 選択中の本（複数可）。同じボタンをもう一度押すと選択を解除する
+  const [selectedIds, setSelectedIds] = useState([]);
   // 申し込みフォーム
   const [form, setForm] = useState(EMPTY_FORM);
   const [errorCount, setErrorCount] = useState(0);
@@ -37,18 +37,22 @@ export default function App() {
     setKeyword("");
   };
 
+  const toggleBook = (id) => {
+    setSelectedIds((ids) => (ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id]));
+  };
+
   const setField = (field, value) => setForm((f) => ({ ...f, [field]: value }));
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const book = BOOKS.find((b) => b.id === selectedId);
-    if (!book || !isValid(form)) {
+    const selectedBooks = BOOKS.filter((b) => selectedIds.includes(b.id));
+    if (selectedBooks.length === 0 || !isValid(form)) {
       setCompleted(null);
       setErrorCount((n) => n + 1);
       return;
     }
     setErrorCount(0);
-    setCompleted({ title: book.title, branch: form.branch });
+    setCompleted({ titles: selectedBooks.map((b) => b.title), branch: form.branch });
   };
 
   // 利用者番号・氏名・受取館・エラー・完了メッセージを初期化する（本の選択と検索条件は残す）
@@ -112,7 +116,7 @@ export default function App() {
                   type="button"
                   className="btn btn-line book__select"
                   aria-describedby={`title-${b.id}`}
-                  onClick={() => setSelectedId(b.id)}
+                  onClick={() => toggleBook(b.id)}
                 >
                   この本を選ぶ
                 </button>
@@ -132,6 +136,10 @@ export default function App() {
               申し込み内容に誤りがあります
             </p>
           )}
+
+          <p className="selected-count">
+            選択中の本：<strong>{selectedIds.length}</strong>冊
+          </p>
 
           <div className="field">
             <label htmlFor="userId">利用者番号</label>
@@ -189,8 +197,14 @@ export default function App() {
               <p className="done__title">申し込みを受け付けました</p>
               <dl>
                 <div>
-                  <dt>本</dt>
-                  <dd>{completed.title}</dd>
+                  <dt>本（{completed.titles.length}冊）</dt>
+                  <dd>
+                    <ul className="done__books">
+                      {completed.titles.map((t) => (
+                        <li key={t}>{t}</li>
+                      ))}
+                    </ul>
+                  </dd>
                 </div>
                 <div>
                   <dt>受取館</dt>
