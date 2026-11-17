@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BOOKS, BRANCHES } from "./data/books";
+import Cover from "./Cover";
 
 // 入力内容はこのページのメモリ上だけで扱い、外部へは送信しない。
 const EMPTY_FORM = { userId: "", name: "", branch: "" };
@@ -96,11 +97,14 @@ export default function App() {
           <ul className="books">
             {books.map((b) => (
               <li key={b.id} className="book">
+                <div className="book__cover">
+                  <Cover book={b} />
+                </div>
                 <div className="book__info">
                   <h3 id={`title-${b.id}`} className="book__title">
                     {b.title}
                   </h3>
-                  <p className="book__author">{b.author}</p>
+                  <p className="book__author">{b.author} 著</p>
                   <p className="book__summary">{b.summary}</p>
                   <p className="book__loan">貸出期間：{b.loanPeriod}</p>
                 </div>
