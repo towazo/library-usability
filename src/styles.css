@@ -1,0 +1,347 @@
+/* まちの図書館：白基調・アクセントは深緑1色。文字と罫線と余白で構成する */
+
+:root {
+  --ink: #222;
+  --ink-2: #5a5a5a;
+  --rule: #ddd;
+  --accent: #2c5545;
+  --accent-dark: #1f4033;
+  --error: #a3271f;
+  --error-bg: #fcefee;
+  --focus: #c25e00;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", "Yu Gothic", Meiryo,
+    system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-text-size-adjust: 100%;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+dl,
+dd {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+.page-head {
+  padding-bottom: 16px;
+  border-bottom: 3px solid var(--accent);
+}
+
+.page-head h1 {
+  font-size: 26px;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+}
+
+.page-head p {
+  margin-top: 4px;
+  color: var(--ink-2);
+}
+
+.section {
+  margin-top: 32px;
+}
+
+.section h2 {
+  font-size: 18px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--ink);
+  margin-bottom: 12px;
+}
+
+/* ---- ボタン ---- */
+
+.btn {
+  min-height: 44px;
+  padding: 8px 20px;
+  border-radius: 3px;
+  border: 1px solid var(--accent);
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-solid {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-line {
+  background: #fff;
+  color: var(--accent);
+}
+
+@media (hover: hover) {
+  .btn-solid:hover {
+    background: var(--accent-dark);
+  }
+
+  .btn-line:hover {
+    background: #f2f6f4;
+  }
+}
+
+/* ---- 検索 ---- */
+
+.search label {
+  display: block;
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.search__row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.search__row input {
+  flex: 1 1 240px;
+  min-width: 0;
+}
+
+input[type="text"],
+input[type="search"] {
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 1px solid #999;
+  border-radius: 3px;
+  background: #fff;
+  font-size: 16px;
+}
+
+/* ---- 本の一覧 ---- */
+
+.book {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.book:first-child {
+  padding-top: 4px;
+}
+
+.book__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.book__title {
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.book__author {
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+.book__summary {
+  margin-top: 2px;
+  font-size: 14px;
+}
+
+.book__loan {
+  margin-top: 2px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.book__select {
+  flex: none;
+}
+
+.empty {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink-2);
+}
+
+/* ---- 申し込みフォーム ---- */
+
+.note {
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+.apply {
+  margin-top: 16px;
+  display: grid;
+  gap: 20px;
+}
+
+.error {
+  padding: 10px 14px;
+  background: var(--error-bg);
+  border-left: 4px solid var(--error);
+  color: var(--error);
+  font-weight: 700;
+}
+
+.field {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.field label,
+.field legend {
+  font-weight: 700;
+  padding: 0;
+}
+
+.field input[type="text"] {
+  max-width: 320px;
+  width: 100%;
+}
+
+.radios {
+  display: flex;
+  gap: 8px 24px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-weight: 400 !important;
+  cursor: pointer;
+}
+
+.radio input {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+}
+
+.actions .btn {
+  min-width: 160px;
+}
+
+.done {
+  margin-top: 24px;
+  padding: 16px;
+  border: 1px solid var(--accent);
+  border-left-width: 4px;
+}
+
+.done__title {
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.done dl {
+  margin-top: 8px;
+}
+
+.done dl div {
+  display: flex;
+  gap: 12px;
+}
+
+.done dt {
+  width: 4em;
+  flex: none;
+  color: var(--ink-2);
+}
+
+.done dd {
+  font-weight: 700;
+}
+
+.done__note {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+/* ---- スマートフォン ---- */
+
+@media (max-width: 560px) {
+  .page {
+    padding: 24px 16px 48px;
+  }
+
+  .page-head h1 {
+    font-size: 22px;
+  }
+
+  .search__row input {
+    flex-basis: 100%;
+  }
+
+  .search__row .btn {
+    flex: 1;
+  }
+
+  .book {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .field input[type="text"] {
+    max-width: none;
+  }
+
+  .actions .btn {
+    flex: 1;
+    min-width: 0;
+  }
+}

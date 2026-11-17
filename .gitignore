@@ -1,0 +1,27 @@
+# 依存パッケージ（npm install で再作成できる）
+node_modules/
+
+# ビルド結果（npm run build で再作成できる）
+dist/
+dist-ssr/
+
+# Vite のキャッシュ
+.vite/
+
+# ログ
+*.log
+npm-debug.log*
+
+# 環境変数（秘密情報を含む可能性がある）
+.env
+.env.*
+!.env.example
+
+# エディタ・OS が作るファイル
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
