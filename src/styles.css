@@ -155,8 +155,25 @@ input[type="search"] {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 12px 0;
+  padding: 14px 0;
   border-bottom: 1px solid var(--rule);
+}
+
+.book__cover {
+  flex: none;
+  width: 64px;
+}
+
+.cover {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 120 / 168;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.cover__type {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif JP", serif;
 }
 
 .book:first-child {
@@ -331,9 +348,18 @@ input[type="search"] {
   }
 
   .book {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 10px 14px;
+    align-items: start;
+  }
+
+  .book__cover {
+    width: 56px;
+  }
+
+  .book__select {
+    grid-column: 1 / -1;
   }
 
   .field input[type="text"] {
